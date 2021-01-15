@@ -39,8 +39,8 @@ class MainWindow(design.Ui_MainWindow, QtWidgets.QMainWindow, QtCore.QUrl):
         if "youtube.com" not in pageUrl:
             self.youtubeView.setUrl(QtCore.QUrl("https://youtube.com/"))
         elif "youtube.com/watch?v=" in pageUrl:
-            shell(f"vlc '{pageUrl}'")
             self.youtubeView.back()
+            shell(f"vlc '{pageUrl}'")
 
 
 app = QtWidgets.QApplication(sys.argv)
