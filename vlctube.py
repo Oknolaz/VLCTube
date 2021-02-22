@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtWidgets, QtCore
 import design
-from shell import shell
+import subprocess
+import time
 
 class MainWindow(design.Ui_MainWindow, QtWidgets.QMainWindow, QtCore.QUrl):
     def __init__(self):
@@ -39,8 +40,9 @@ class MainWindow(design.Ui_MainWindow, QtWidgets.QMainWindow, QtCore.QUrl):
         if "youtube.com" not in pageUrl:
             self.youtubeView.setUrl(QtCore.QUrl("https://youtube.com/"))
         elif "youtube.com/watch?v=" in pageUrl:
+            subprocess.Popen(["vlc", pageUrl])
+            time.sleep(3)
             self.youtubeView.back()
-            shell(f"vlc '{pageUrl}'")
 
 
 app = QtWidgets.QApplication(sys.argv)
